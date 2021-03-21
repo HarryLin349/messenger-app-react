@@ -14,15 +14,25 @@ const LoginForm = () => {
 
         const authObject = { 'Project-ID': projectID, 'User-Name': username, 'User-Secret': password };
 
-        try {
-            await axios.get('https://api.chatengine.io/chats', { headers: authObject });
-            localStorage.setItem('username', username);
-            localStorage.setItem('password', password);
 
-            window.location.reload();
-        } catch (error) {
+        if (username !== username.trim() || password !== password.trim()) {
             setError('Sorry, those credentials are incorrect.');
+        } else {
+
+            try {
+                await axios.get('https://api.chatengine.io/chats', { headers: authObject });
+
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+
+                window.location.reload();
+            } catch (error) {
+                setError('Sorry, those credentials are incorrect.');
+            }
+
+
         }
+
 
         // username | password => give messages
         // works? -> logged in
@@ -57,26 +67,26 @@ const LoginForm = () => {
                             </button>
                         </div>
                         <h2 className="error">{error}</h2>
-                        <div className = "login-text"align="center">
-                        <p>Trying the site? Use one of the accounts below.</p>
-                        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Username</th>
-      <th scope="col">Password</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Guest</td>
-      <td>123pw</td>
-    </tr>
-    <tr>
-      <td>Guest2</td>
-      <td>456pw</td>
-    </tr>
-  </tbody>
-</table>
+                        <div className="login-text" align="center">
+                            <p>Trying the site? Use one of the accounts below.</p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Password</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Guest</td>
+                                        <td>123pw</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Guest2</td>
+                                        <td>456pw</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </form>
                 </div>

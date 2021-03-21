@@ -62,7 +62,8 @@ const ChatFeed = (props) => {
                     {chat?.title}
                 </div>
                 <div className="chat-subtitle">
-                    {chat.people.map((person) => `${person.person.username}` + ' ')}
+                    <p>If chat isn't loading, try refreshing or switching chat rooms.</p>
+                    <p>The backend takes a moment to start, so please be patient.</p>
                 </div>
                 {renderMessages()}
                 <div style={{height: '100px'}}/>
